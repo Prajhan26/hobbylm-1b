@@ -32,7 +32,7 @@ sha256sum hobbylm-1b-sft-3450-F32.gguf      # compare with SHA256SUMS.txt in har
 - **Revisions:** `0506eed2…` is the `hobbylm-1B-instruct` revision of the converter's *input* (safetensors, config, tokenizer). The published GGUF files are in [`harims95/hobbylm-1B-gguf`](https://huggingface.co/harims95/hobbylm-1B-gguf) at `f8bc034403026b2706f5275702d3801753b87c34`.
 - **Same input files:** the `config.json`, `model.safetensors` and tokenizer files of `hobbylm-1B-instruct` are byte-identical to the files the bit-for-bit reproduction used (the release revision of the former SFT repository plus the release tokenizer).
 - **Folder name:** the converter stores the input folder's name in the GGUF metadata (`general.name`). The published files were converted from folders named `sft` and `base`. Any other name changes the file's checksum, though not the model.
-- **Base model:** download `harims95/hobbylm-1b-checkpoints` at `3aded72dc807683cb9b85c20cfffceaf1f72406c` with `--include "base-anneal-final/*" --local-dir ckpt`, rename `ckpt/base-anneal-final` to `ckpt/base`, and convert it to `hobbylm-1b-base-F32.gguf` (context 1024, no chat template).
+- **Base model:** download the root files of `harims95/hobbylm-1B` at `b965c7e8157361559b3c2f13ddf7454fefb84aba` with `--include "*.json" "*.safetensors" "*.txt" --local-dir ckpt/base` (the folder must be named `base`), and convert it to `hobbylm-1b-base-F32.gguf` (context 1024, no chat template).
 - **Quantised files:** `llama-quantize <F32.gguf> <out.gguf> Q8_0` (or `Q4_K_M`). The router and expert-bias tensors stay F32.
 
 ## Running the GGUF
