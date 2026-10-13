@@ -15,6 +15,7 @@ Two models are released:
 | Base model (Transformers) | [harims95/hobbylm-1B](https://huggingface.co/harims95/hobbylm-1B): final annealed base, model card, release evaluation |
 | Instruct model (Transformers) | [harims95/hobbylm-1B-instruct](https://huggingface.co/harims95/hobbylm-1B-instruct): HobbyLM-1B Instruct at the repository root |
 | GGUF files | [harims95/hobbylm-1B-gguf](https://huggingface.co/harims95/hobbylm-1B-gguf): instruct Q4_K_M, Q8_0, F32; base F32. Converter: [`gguf/`](gguf/) (reproduces the published F32 file bit for bit) |
+| MLX (Apple silicon) | [harims95/hobbylm-1B-mlx](https://huggingface.co/harims95/hobbylm-1B-mlx): Instruct model, partial 8-bit (mostly FP32), tested on an M4 Mac |
 | Checkpoints (Transformers) | [harims95/hobbylm-1b-checkpoints](https://huggingface.co/harims95/hobbylm-1b-checkpoints): final annealed base, 4K context extension and instruct, one subfolder each |
 | Patched runtimes (Windows, CPU) | [Release page](https://github.com/fuellabs-ai/hobbylm-1b/releases/tag/v1.0.0): patched llama.cpp, patched Ollama, and their source archive. Patches, launchers and build steps: [`runtimes/`](runtimes/) |
 | Evaluation method and results | the **Evaluation Results** section of the [base model card](https://huggingface.co/harims95/hobbylm-1B) |
