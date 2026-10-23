@@ -1,0 +1,13 @@
+.venv/
+models/
+vendor/
+data/runs/
+data/test-screenshots/
+data/calc_checker
+data/brightness
+data/media_key
+data/checker
+data/STOP
+__pycache__/
+*.pyc
+.DS_Store

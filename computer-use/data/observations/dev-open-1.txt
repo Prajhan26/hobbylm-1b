@@ -1,0 +1,266 @@
+# System Settings — 264 elements (0.47s)
+
+ [AXRow (outline row)] x:13 y:-14
+ [AXRow (outline row)] x:13 y:-14 w:215 h:46
+ [AXCell (cell)] x:23 y:-14 w:195 h:46
+ [AXColumn (column)] x:23 y:-14 w:195 h:965
+ [AXCell (cell)] x:23 y:-14
+ [AXMenuBar (menu bar)] x:0 y:0 w:1470 h:37
+ [AXMenuBarItem (menu bar item)] "Apple" x:10 y:0 w:34 h:37
+ [AXMenuBarItem (menu bar item)] "System Settings" x:44 y:0 w:127 h:37
+ [AXMenuBarItem (menu bar item)] "Edit" x:171 y:0 w:44 h:37
+ [AXMenuBarItem (menu bar item)] "View" x:215 y:0 w:50 h:37
+ [AXMenuBarItem (menu bar item)] "Window" x:265 y:0 w:69 h:37
+ [AXMenuBarItem (menu bar item)] "Help" x:334 y:0 w:48 h:37
+ [AXRow (outline row)] x:13 y:45
+ [AXRow (outline row)] x:13 y:45 w:215 h:28
+ [AXCell (cell)] x:23 y:45
+ [AXCell (cell)] x:23 y:45 w:195 h:28
+ [AXRow (outline row)] x:13 y:73 w:215 h:28
+ [AXCell (cell)] x:23 y:73 w:195 h:28
+ [AXRow (outline row)] x:13 y:101 w:215 h:28
+ [AXCell (cell)] x:23 y:101 w:195 h:28
+ [AXWindow (standard window)] "Accessibility" x:13 y:121 w:715 h:625 visible
+ [AXStaticText (text)] "Accessibility" x:313 y:121 w:398 h:52 visible
+ [AXButton (button)] "Back" x:235 y:127 w:40 h:40 visible
+ [AXMenuButton (menu button)] "Forward" x:275 y:127 w:40 h:40 visible
+ [AXRow (outline row)] x:13 y:129 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:129 w:195 h:28 visible
+ [AXButton (close button)] x:31 y:139 w:16 h:16 visible
+ [AXButton (minimise button)] x:51 y:139 w:16 h:16 visible
+ [AXButton (zoom button)] x:71 y:139 w:16 h:16 visible
+ [AXRow (outline row)] x:13 y:170 w:215 h:28 visible
+ [AXRow (outline row)] x:13 y:170 visible
+ [AXCell (cell)] x:23 y:170 w:195 h:28 visible
+ [AXCell (cell)] x:23 y:170 visible
+ [AXTextField (search text field)] x:21 y:173 w:199 h:30 visible
+ [AXButton (button)] "Search" x:23 y:177 w:25 h:22 visible
+ [AXStaticText (text)] "Allow the applications below to control your computer." x:259 y:183 w:328 h:16 visible
+ [AXRow (outline row)] x:13 y:198 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:198 w:195 h:28 visible
+ [AXStaticText (text)] "Accessibility" x:27 y:200 w:103 h:24 visible
+ [AXScrollBar (scroll bar)] x:211 y:210 w:18 h:537 visible
+ [AXCell (cell)] x:249 y:210 w:459 h:40 visible
+ [AXRow (outline row)] x:249 y:210 w:459 h:40 visible
+ [AXColumn (column)] x:249 y:210 w:459 h:200 visible
+ [AXOutline (list)] "Sidebar" x:13 y:211 w:215 h:535 visible
+ [AXButton (decrement page button)] x:216 y:211 w:12 h:125 visible
+ [AXStaticText (text)] "App 1" x:257 y:218 w:85 h:24 visible
+ [AXCheckBox (switch)] x:672 y:225 w:26 h:15 visible
+ [AXRow (outline row)] x:13 y:226 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:226 w:195 h:28 visible
+ [AXStaticText (text)] "Appearance" x:27 y:228 w:100 h:24 visible
+ [AXCell (cell)] x:249 y:250 w:459 h:40 visible
+ [AXRow (outline row)] x:249 y:250 w:459 h:40 visible
+ [AXRow (outline row)] x:13 y:254 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:254 w:195 h:28 visible
+ [AXStaticText (text)] "Apple Intelligence & Siri" x:27 y:256 w:171 h:24 visible
+ [AXStaticText (text)] "App 2" x:257 y:258 w:71 h:24 visible
+ [AXCheckBox (switch)] x:672 y:265 w:26 h:15 visible
+ [AXRow (outline row)] x:13 y:282 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:282 w:195 h:28 visible
+ [AXStaticText (text)] "Control Centre" x:27 y:284 w:116 h:24 visible
+ [AXRow (outline row)] x:249 y:290 w:459 h:40 visible
+ [AXCell (cell)] x:249 y:290 w:459 h:40 visible
+ [AXStaticText (text)] "App 3" x:257 y:298 w:88 h:24 visible
+ [AXCheckBox (switch)] x:672 y:305 w:26 h:15 visible
+ [AXRow (outline row)] x:13 y:310 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:310 w:195 h:28 visible
+ [AXStaticText (text)] "Desktop & Dock" x:27 y:312 w:125 h:24 visible
+ [AXRow (outline row)] x:249 y:330 w:459 h:40 visible
+ [AXCell (cell)] x:249 y:330 w:459 h:40 visible
+ [AXValueIndicator (value indicator)] x:216 y:336 w:12 h:295 visible
+ [AXRow (outline row)] x:13 y:338 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:338 w:195 h:28 visible
+ [AXStaticText (text)] "App 4" x:257 y:338 w:105 h:24 visible
+ [AXStaticText (text)] "Displays" x:27 y:340 w:78 h:24 visible
+ [AXCheckBox (switch)] x:672 y:345 w:26 h:15 visible
+ [AXRow (outline row)] x:13 y:366 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:366 w:195 h:28 visible
+ [AXStaticText (text)] "Screen Saver" x:27 y:368 w:107 h:24 visible
+ [AXRow (outline row)] x:249 y:370 w:459 h:40 visible
+ [AXCell (cell)] x:249 y:370 w:459 h:40 visible
+ [AXStaticText (text)] "App 5" x:257 y:378 w:147 h:24 visible
+ [AXCheckBox (switch)] x:672 y:385 w:26 h:15 visible
+ [AXRow (outline row)] x:13 y:394 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:394 w:195 h:28 visible
+ [AXStaticText (text)] "Spotlight" x:27 y:396 w:82 h:24 visible
+ [AXButton (button)] "Add" x:256 y:418 w:9 h:9 visible
+ [AXRow (outline row)] x:13 y:422 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:422 w:195 h:28 visible
+ [AXButton (button)] "Remove" x:281 y:422 w:9 h:1 visible
+ [AXStaticText (text)] "Wallpaper" x:27 y:424 w:87 h:24 visible
+ [AXRow (outline row)] x:13 y:463 visible
+ [AXRow (outline row)] x:13 y:463 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:463 visible
+ [AXCell (cell)] x:23 y:463 w:195 h:28 visible
+ [AXStaticText (text)] "Notifications" x:27 y:465 w:104 h:24 visible
+ [AXRow (outline row)] x:13 y:491 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:491 w:195 h:28 visible
+ [AXStaticText (text)] "Sound" x:27 y:493 w:66 h:24 visible
+ [AXRow (outline row)] x:13 y:519 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:519 w:195 h:28 visible
+ [AXStaticText (text)] "Focus" x:27 y:521 w:63 h:24 visible
+ [AXRow (outline row)] x:13 y:547 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:547 w:195 h:28 visible
+ [AXStaticText (text)] "Screen Time" x:27 y:549 w:103 h:24 visible
+ [AXRow (outline row)] x:13 y:588 w:215 h:28 visible
+ [AXRow (outline row)] x:13 y:588 visible
+ [AXCell (cell)] x:23 y:588 visible
+ [AXCell (cell)] x:23 y:588 w:195 h:28 visible
+ [AXStaticText (text)] "Lock Screen" x:27 y:590 w:102 h:24 visible
+ [AXRow (outline row)] x:13 y:616 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:616 w:195 h:28 visible
+ [AXStaticText (text)] "Privacy & Security" x:27 y:618 w:137 h:24 visible
+ [AXButton (increment page button)] x:216 y:632 w:12 h:114 visible
+ [AXRow (outline row)] x:13 y:644 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:644 w:195 h:28 visible
+ [AXStaticText (text)] "Touch ID & Password" x:27 y:646 w:155 h:24 visible
+ [AXRow (outline row)] x:13 y:672 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:672 w:195 h:28 visible
+ [AXStaticText (text)] "Users & Groups" x:27 y:674 w:122 h:24 visible
+ [AXRow (outline row)] x:13 y:713 w:215 h:28 visible
+ [AXRow (outline row)] x:13 y:713 visible
+ [AXCell (cell)] x:23 y:713 w:195 h:28 visible
+ [AXCell (cell)] x:23 y:713 visible
+ [AXStaticText (text)] "Internet Accounts" x:27 y:715 w:134 h:24 visible
+ [AXRow (outline row)] x:13 y:741 w:215 h:28 visible
+ [AXCell (cell)] x:23 y:741 w:195 h:28 visible
+ [AXStaticText (text)] "Game Center" x:27 y:743 w:107 h:24 visible
+ [AXRow (outline row)] x:13 y:769 w:215 h:28
+ [AXCell (cell)] x:23 y:769 w:195 h:28
+ [AXRow (outline row)] x:13 y:797 w:215 h:28
+ [AXCell (cell)] x:23 y:797 w:195 h:28
+ [AXRow (outline row)] x:13 y:838 w:215 h:19
+ [AXCell (cell)] x:23 y:838 w:195 h:19
+ [AXRow (outline row)] x:13 y:857 w:215 h:28
+ [AXCell (cell)] x:23 y:857 w:195 h:28
+ [AXRow (outline row)] x:13 y:885 w:215 h:28
+ [AXCell (cell)] x:23 y:885 w:195 h:28
+ [AXRow (outline row)] x:13 y:913 w:215 h:28
+ [AXCell (cell)] x:23 y:913 w:195 h:28
+ [AXMenuItem (menu item)] "Sleep"
+ [AXMenuItem (menu item)] "Halves"
+ [AXMenuItem (menu item)] "System Settings Help"
+ [AXMenuItem (menu item)] "Users & Groups"
+ [AXMenuItem (menu item)] "Storage"
+ [AXMenuItem (menu item)] "Arrange"
+ [AXMenuItem (menu item)] "Internet Accounts"
+ [AXMenuItem (menu item)] "Network"
+ [AXMenuItem (menu item)] "Right & Left"
+ [AXMenuItem (menu item)] "AutoFill"
+ [AXMenuItem (menu item)] "Right & Quarters"
+ [AXMenuItem (menu item)] "Force Quit System Settings"
+ [AXMenuItem (menu item)] "Game Center"
+ [AXMenuItem (menu item)] "Left"
+ [AXMenuItem (menu item)] "Startup Disk"
+ [AXMenuItem (menu item)] "Minimise All"
+ [AXMenuItem (menu item)] "Trackpad"
+ [AXMenuItem (menu item)] "Select All"
+ [AXMenuItem (menu item)] "AirDrop & Handoff"
+ [AXMenuItem (menu item)] "System Information"
+ [AXMenuItem (menu item)] "Printers & Scanners"
+ [AXMenuItem (menu item)] "Bottom Left"
+ [AXMenuItem (menu item)] "Privacy & Security"
+ [AXMenuItem (menu item)] "Full-Screen Tile"
+ [AXMenuItem (menu item)] "Apple Account"
+ [AXButton (increment arrow button)]
+ [AXMenuItem (menu item)] "Battery"
+ [AXMenuItem (menu item)] "Show All"
+ [AXMenuItem (menu item)] "Delete"
+ [AXMenuItem (menu item)] "About"
+ [AXMenuItem (menu item)] "Left & Right"
+ [AXMenuItem (menu item)] "Forward"
+ [AXMenuItem (menu item)] "Arrange in Front"
+ [AXMenuItem (menu item)] "Restart…"
+ [AXMenuItem (menu item)] "iCloud"
+ [AXMenuItem (menu item)] "Top"
+ [AXMenuItem (menu item)] "Touch ID & Password"
+ [AXMenuItem (menu item)] "Quarters"
+ [AXMenuItem (menu item)] "Zoom All"
+ [AXMenuItem (menu item)] "Hide Others"
+ [AXMenuItem (menu item)] "Quit and Keep Windows"
+ [AXMenuItem (menu item)] "Zoom"
+ [AXMenuItem (menu item)] "Displays"
+ [AXMenuItem (menu item)] "Restart"
+ [AXMenuItem (menu item)] "Bottom Right"
+ [AXMenuItem (menu item)] "Notifications"
+ [AXMenuItem (menu item)] "Wallet & Apple Pay"
+ [AXMenuItem (menu item)] "Emoji & Symbols"
+ [AXButton (decrement arrow button)]
+ [AXMenuItem (menu item)] "Close All"
+ [AXMenuItem (menu item)] "Device Management"
+ [AXMenuItem (menu item)] "AppleCare & Warranty"
+ [AXMenuItem (menu item)] "Contact…"
+ [AXMenuItem (menu item)] "Passwords…"
+ [AXMenuItem (menu item)] "Redo"
+ [AXMenuItem (menu item)] "Top Left"
+ [AXMenuItem (menu item)] "Wallpaper"
+ [AXMenuItem (menu item)] "Quit System Settings"
+ [AXMenuItem (menu item)] "Bottom & Quarters"
+ [AXMenuItem (menu item)] "Focus"
+ [AXMenuItem (menu item)] "Centre"
+ [AXMenuItem (menu item)] "Screen Saver"
+ [AXMenuItem (menu item)] "Sound"
+ [AXMenuItem (menu item)] "Top & Quarters"
+ [AXMenuItem (menu item)] "Copy"
+ [AXMenuItem (menu item)] "Enter Full Screen"
+ [AXMenuItem (menu item)] "Spotlight"
+ [AXMenuItem (menu item)] "Transfer or Reset"
+ [AXMenuItem (menu item)] "Log Out User …"
+ [AXMenuItem (menu item)] "Language & Region"
+ [AXMenuItem (menu item)] "Wi‑Fi"
+ [AXMenuItem (menu item)] "Right"
+ [AXMenuItem (menu item)] "About System Settings"
+ [AXMenuItem (menu item)] "Move & Resize"
+ [AXMenuItem (menu item)] "Software Update"
+ [AXMenuItem (menu item)] "Return to Previous Size"
+ [AXMenuItem (menu item)] "Cut"
+ [AXMenuItem (menu item)] "Appearance"
+ [AXMenuItem (menu item)] "Top Right"
+ [AXMenuItem (menu item)] "No Services Apply"
+ [AXMenuItem (menu item)] "Login Items & Extensions"
+ [AXMenuItem (menu item)] "Time Machine"
+ [AXMenuItem (menu item)] "About This Mac"
+ [AXMenuItem (menu item)] "Start Dictation…"
+ [AXMenuItem (menu item)] "Apple Intelligence & Siri"
+ [AXMenuItem (menu item)] "Shut Down"
+ [AXMenuItem (menu item)] "Accessibility"
+ [AXMenuItem (menu item)] "Bluetooth"
+ [AXMenuItem (menu item)] "Control Centre"
+ [AXMenuItem (menu item)] "System Settings…"
+ [AXMenuItem (menu item)] "Services Settings…"
+ [AXMenuItem (menu item)] "Minimise"
+ [AXMenuItem (menu item)] "Back"
+ [AXMenuItem (menu item)] "Bottom & Top"
+ [AXApplication (application)] "System Settings"
+ [AXMenuItem (menu item)] "Hardware Support"
+ [AXStaticText (text)] "Printers & Scanners"
+ [AXMenuItem (menu item)] "User Manual"
+ [AXMenuItem (menu item)] "App Store…, 3 updates"
+ [AXMenuItem (menu item)] "MacBook Air Specifications"
+ [AXMenuItem (menu item)] "Hide System Settings"
+ [AXMenuItem (menu item)] "Shut Down…"
+ [AXMenuItem (menu item)] "Left & Quarters"
+ [AXMenuItem (menu item)] "Bottom"
+ [AXMenuItem (menu item)] "Date & Time"
+ [AXMenuItem (menu item)] "Search"
+ [AXMenuItem (menu item)] "Screen Time"
+ [AXMenuItem (menu item)] "Sharing"
+ [AXMenuItem (menu item)] "Top & Bottom"
+ [AXMenuItem (menu item)] "macOS Support"
+ [AXMenuItem (menu item)] "Log Out User"
+ [AXMenuItem (menu item)] "Bring All to Front"
+ [AXMenuItem (menu item)]
+ [AXMenuItem (menu item)] "Force Quit…"
+ [AXMenu (menu)]
+ [AXMenuItem (menu item)] "Lock Screen"
+ [AXMenuItem (menu item)] "Undo"
+ [AXMenuItem (menu item)] "Desktop & Dock"
+ [AXMenuItem (menu item)] "Paste"
+ [AXMenuItem (menu item)] "Remove Window from Set"
+ [AXMenuItem (menu item)] "Keyboard"
+ [AXMenuItem (menu item)] "Close"
+ [AXMenuItem (menu item)] "macOS Help"
+ [AXMenuItem (menu item)] "Fill"
+ [AXMenuItem (menu item)] "Services"
