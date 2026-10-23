@@ -18,6 +18,7 @@ Two models are released:
 | MLX (Apple silicon) | [harims95/hobbylm-1B-mlx](https://huggingface.co/harims95/hobbylm-1B-mlx): Instruct model, partial 8-bit (mostly FP32), tested on an M4 Mac |
 | Patched runtimes (Windows, CPU) | [Release page](https://github.com/fuellabs-ai/hobbylm-1b/releases/tag/v1.0.0): patched llama.cpp, patched Ollama, and their source archive. Patches, launchers and build steps: [`runtimes/`](runtimes/) |
 | Evaluation method and results | the **Evaluation Results** section of the [base model card](https://huggingface.co/harims95/hobbylm-1B) |
+| **Computer use on a Mac, offline** | [Hobbylm/hobbylm-1B-computer-use](https://huggingface.co/Hobbylm/hobbylm-1B-computer-use): LoRA adapter for HobbyLM-1B Instruct that turns plain-English requests into Mac actions. App, harness, evaluation and training: [`computer-use/`](computer-use/) |
 
 ## Repository contents
 
@@ -29,6 +30,7 @@ Two models are released:
 | [`runtimes/`](runtimes/) | Patches, launchers and build instructions for the patched llama.cpp and Ollama runtimes in the release. |
 | [`ARCHITECTURE.md`](ARCHITECTURE.md) | Architecture details read from the released configuration. |
 | [`tests/`](tests/) | Offline checks that run without downloading the model. |
+| [`computer-use/`](computer-use/) | HobbyLM-1B Computer Use v0.1: the Hobby Mac app, harness, live evaluation suite and LoRA training pipeline. |
 
 ## Quickstart
 
