@@ -3,6 +3,7 @@
   .venv/bin/python hobby/hobby_server.py r4
 stdin, one JSON object per line:   {"type": "request", "text": "..."}   {"type": "answer", "text": "y"}
 stdout, one JSON object per line:  ready | step | result | info | warn | confirm | ask | end | error
+Every request finishes with exactly one end (kind: done | unknown | cancelled | off | stopped | error).
 The same run() loop as hobby_demo.py: the model picks every action, the harness validates and executes it,
 and calendar events still need an explicit yes.
 """
@@ -74,6 +75,7 @@ def main():
             except Exception as e:  # one bad request must not take the warm model down
                 traceback.print_exc()
                 send(type='error', text=f'{type(e).__name__}: {e}')
+                send(type='end', kind='error', text='That request failed. Hobby is ready for the next one.')  # every request ends with end
     except EOFError:
         pass
     finally:

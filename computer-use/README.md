@@ -123,6 +123,7 @@ Full details are on the [model card](https://huggingface.co/Hobbylm/hobbylm-1B-c
 | Live sealed evaluation | `.venv/bin/python hobby/hobbymac_run.py --model trained --round r4 --adapter r4 --runtime mlx` |
 | Score a run | `.venv/bin/python hobby/hobbymac_score.py <run folder>` |
 | Harness tests: 10-action parser and allow-list (no model) | `.venv/bin/python hobby/test_harness.py` |
+| Hobby bar worker protocol: every request ends, errors included (no model) | `.venv/bin/python hobby/test_server.py` |
 | System Settings agent parser tests (no model) | `.venv/bin/python hobby/test_offline.py` |
 | Generate training data | `hobby/hobbymac_data.py` |
 | Train an adapter on Modal (H100) | `modal run hobby/hobbymac_modal.py` |

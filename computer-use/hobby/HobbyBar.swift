@@ -138,7 +138,7 @@ final class BarPanel: NSPanel {
 }
 
 final class Hobby: NSObject, NSApplicationDelegate, NSTextFieldDelegate {
-    enum Mode { case loading, ready, busy, asking }
+    enum Mode { case loading, ready, busy, asking, stopped }
 
     let root: URL
     let panel = BarPanel(contentRect: NSRect(x: 0, y: 0, width: panelWidth, height: 200),
@@ -406,7 +406,8 @@ final class Hobby: NSObject, NSApplicationDelegate, NSTextFieldDelegate {
     }
 
     func show() {
-        let screen = NSScreen.screens.first { NSMouseInRect(NSEvent.mouseLocation, $0.frame, false) } ?? NSScreen.main!
+        guard let screen = NSScreen.screens.first(where: { NSMouseInRect(NSEvent.mouseLocation, $0.frame, false) }) ?? NSScreen.main
+            ?? NSScreen.screens.first else { return }
         let v = screen.visibleFrame
         resize()
         // reopen where the user last dragged it, if that spot is still on a screen; otherwise centred near the top
@@ -541,7 +542,8 @@ final class Hobby: NSObject, NSApplicationDelegate, NSTextFieldDelegate {
 
     func startWorker() {
         let python = root.appendingPathComponent(".venv/bin/python")
-        let server = root.appendingPathComponent("hobby/hobby_server.py")
+        let server = ProcessInfo.processInfo.environment["HOBBY_BAR_WORKER"].map { URL(fileURLWithPath: $0) }  // tests: a stand-in worker
+            ?? root.appendingPathComponent("hobby/hobby_server.py")
         let p = Process()
         p.executableURL = python
         p.arguments = [server.path, "r4"]
@@ -558,13 +560,23 @@ final class Hobby: NSObject, NSApplicationDelegate, NSTextFieldDelegate {
         p.standardError = try? FileHandle(forWritingTo: logURL)
         output.fileHandleForReading.readabilityHandler = { [weak self] h in
             let d = h.availableData
+            if d.isEmpty { h.readabilityHandler = nil; return }  // EOF: the worker exited
             DispatchQueue.main.async { self?.receive(d) }
         }
         p.terminationHandler = { [weak self] _ in
             DispatchQueue.main.async {
-                self?.setStatus("Stopped", live: false)
-                self?.setThinking(false)
-                self?.addText("Hobby stopped. Details: data/hobby-bar.log")
+                guard let self else { return }
+                self.mode = .stopped  // no more writes to the worker's closed stdin
+                self.toWorker = nil
+                self.setStatus("Stopped", live: false)
+                self.setThinking(false)
+                self.setPlaceholder("Hobby stopped. Quit and reopen it from the menu bar.")
+                self.updateSend()
+                self.addText("Hobby stopped. Details: data/hobby-bar.log")
+                if self.selftest != nil {
+                    self.sendToWorker(["type": "request", "text": "probe"])  // must be a no-op now, not a crash
+                    self.finishSelftest()
+                }
             }
         }
         do { try p.run() } catch {
@@ -577,8 +589,14 @@ final class Hobby: NSObject, NSApplicationDelegate, NSTextFieldDelegate {
     }
 
     func sendToWorker(_ obj: [String: String]) {
-        guard let d = try? JSONSerialization.data(withJSONObject: obj) else { return }
-        toWorker?.write(d + Data("\n".utf8))
+        guard mode != .stopped, let pipe = toWorker, let d = try? JSONSerialization.data(withJSONObject: obj) else { return }
+        do { try pipe.write(contentsOf: d + Data("\n".utf8)) } catch {  // worker gone between checks: stop cleanly
+            mode = .stopped
+            toWorker = nil
+            setStatus("Stopped", live: false)
+            setThinking(false)
+            addText("Hobby stopped. Details: data/hobby-bar.log")
+        }
     }
 
     func receive(_ d: Data) {
@@ -652,7 +670,6 @@ final class Hobby: NSObject, NSApplicationDelegate, NSTextFieldDelegate {
             addText(text, ui(13), muted)
             sendToWorker(["type": "request", "text": text])
             mode = .busy
-        setClearEnabled(false)
             setClearEnabled(false)
             setStatus("Working", live: true)
             setThinking(true)
@@ -707,6 +724,7 @@ final class Hobby: NSObject, NSApplicationDelegate, NSTextFieldDelegate {
 let exe = URL(fileURLWithPath: CommandLine.arguments[0]).resolvingSymlinksInPath()
 let root = ProcessInfo.processInfo.environment["HOBBY_HOME"].map { URL(fileURLWithPath: $0) }
     ?? exe.deletingLastPathComponent().deletingLastPathComponent()
+signal(SIGPIPE, SIG_IGN)  // a write to a dead worker becomes a catchable error, not a crash
 let app = NSApplication.shared
 app.setActivationPolicy(.accessory)
 let delegate = Hobby(root: root)
