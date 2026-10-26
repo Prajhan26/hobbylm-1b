@@ -38,33 +38,60 @@ def timer(minutes):
     threading.Thread(target=ring, daemon=True).start()
 
 
-def event_flow(arg, req=''):
+class Terminal:
+    """How run() talks to the person: printed lines and input() here; hobby_server.py swaps in JSON lines for the Hobby bar."""
+    def step(self, seconds, act):
+        print(f'  {D}{seconds:.1f}s{X}  Hobby → {B}{act}{X}', flush=True)
+
+    def result(self, res):
+        print(f'  {G}↳ {res}{X}', flush=True)  # visible proof in screen recordings (brightness/volume aren't visible as pixels)
+
+    def info(self, text):
+        print(f'  {D}{text}{X}')
+
+    def warn(self, text):
+        print(f'  {Y}{text}{X}')
+
+    def confirm(self, text):
+        print(f'  {B}{text}{X}')
+
+    def ask(self, prompt):
+        return input(f'  {G}{prompt} ›{X} ')
+
+    def end(self, kind, text):  # kind: done | unknown | cancelled | off | stopped
+        print(f'  {G if kind == "done" else Y}{text}{X}\n')
+
+
+TERMINAL = Terminal()
+
+
+def event_flow(arg, req='', io=TERMINAL):
     """Calendar: plain code resolves date/time/email; nothing is added or sent without the user's yes."""
     arg, notes = CAL.harden(arg, req)  # code cross-checks the model's form against your sentence
     for n in notes:
-        print(f'  {D}check: {n}{X}')
+        io.info(f'check: {n}')
     now = datetime.now(ZoneInfo(LOCAL_TZ))
     plan = CAL.plan_event(arg, now, LOCAL_TZ)
     if plan is None or str(plan.problem or '').startswith('could not'):
-        print(f'  {Y}I could not understand the date or time.{X}'); return None
+        io.warn('I could not understand the date or time.'); return None
     if plan.problem:  # no email / several matches in Contacts
-        print(f'  {Y}{plan.problem}{X}')
-        e = input(f'  {G}email to invite (Enter = no invite) ›{X} ').strip()
+        io.warn(plan.problem)
+        e = io.ask('email to invite (Enter = no invite)').strip()
         if e and CAL.EMAIL.match(e):
             plan.email, plan.email_source = e.lower(), 'typed'
         plan.problem = None
     for w in CAL.warnings(plan, CAL.parse_event(arg)[1], now):
-        print(f'  {Y}note: {w}{X}')
-    print(f'  {B}Add {CAL.describe(plan, LOCAL_TZ)}?{X}')
-    if input(f'  {G}y / n ›{X} ').strip().lower() not in ('y', 'yes'):
+        io.warn(f'note: {w}')
+    io.confirm(f'Add {CAL.describe(plan, LOCAL_TZ)}?')
+    if io.ask('y / n').strip().lower() not in ('y', 'yes'):
         return None
     ok, out = CAL.create_event(plan, EVENT_CALENDAR, LOCAL_TZ, with_invite=bool(plan.email))
     if not ok:
-        print(f'  {Y}Calendar refused: {out[:120]}{X}'); return None
+        io.warn(f'Calendar refused: {out[:120]}'); return None
     return 'event added to the calendar.'
 
 
-def run(h, mcp, req):
+def run(h, mcp, req, io=TERMINAL):
     last, pid = None, None
     for i in range(6):
         co = R.running('Calculator') and bool(R.display())  # running without a window counts as not open
@@ -74,13 +101,13 @@ def run(h, mcp, req):
         p = R.parse(g['raw'])
         status = R.validate(p, co)
         act = ' '.join(x for x in (p.get('kind'), p.get('arg')) if x) if p['format_ok'] else g['raw'].strip()[:40]
-        print(f'  {D}{g["seconds"]:.1f}s{X}  Hobby → {B}{act}{X}', flush=True)
+        io.step(g['seconds'], act)
         if p['format_ok'] and p['kind'] == 'DONE':
-            print(f'  {G}✓ done{X}\n'); return
+            io.end('done', '✓ done'); return
         if p['format_ok'] and p['kind'] == 'UNKNOWN':
-            print(f"  {Y}I can't do that one offline.{X}\n"); return
+            io.end('unknown', "I can't do that one offline."); return
         if status != 'valid':
-            print(f'  {Y}(not allowed — skipped){X}'); last = (act, 'rejected (not allowed in this state).'); continue
+            io.warn('(not allowed — skipped)'); last = (act, 'rejected (not allowed in this state).'); continue
         k, a = p['kind'], p.get('arg')
         if k == 'OPEN' and a.lower() == 'calculator':
             R.sh('open', '-a', 'Calculator')  # 'reopen' brings back a window if Calculator runs windowless
@@ -118,30 +145,36 @@ def run(h, mcp, req):
         elif k == 'FOLDER':
             R.sh('open', str(Path.home() / R.FOLDERS[a.lower()])); res = f'Finder opened the {R.FOLDERS[a.lower()]} folder.'
         elif k == 'EVENT' and not CALENDAR_ENABLED:
-            print(f'  {Y}Calendar events are off by default. Set HOBBY_ENABLE_CALENDAR=1 to turn them on.{X}\n'); return
+            io.end('off', 'Calendar events are off by default. Set HOBBY_ENABLE_CALENDAR=1 to turn them on.'); return
         elif k == 'EVENT':
-            res = event_flow(a, req)
+            res = event_flow(a, req, io)
             if res is None:
-                print(f'  {Y}cancelled — nothing was added.{X}\n'); return
+                io.end('cancelled', 'cancelled — nothing was added.'); return
         elif k == 'TIMER':
             timer(int(a)); res = f'timer set for {int(a)} minutes.'
         else:  # SCREENSHOT
             f = Path.home() / 'Desktop' / f'Hobby screenshot {time.strftime("%H.%M.%S")}.png'
             R.sh('screencapture', '-x', str(f)); res = 'screenshot saved to the Desktop.'
-        print(f'  {G}↳ {res}{X}', flush=True)  # visible proof in screen recordings (brightness/volume aren't visible as pixels)
+        io.result(res)
         last = (act, res)
-    print(f'  {Y}(stopped after 6 steps){X}\n')
+    io.end('stopped', '(stopped after 6 steps)')
 
 
-def main():
+def load(rnd):
+    """Load the model + adapter once (warm), start macos-use; returns (model, mcp, accessibility_on)."""
     global PROMPT
-    rnd = sys.argv[1] if len(sys.argv) > 1 else 'r1'   # r3 adds the calendar skill
-    PROMPT = SYSTEM_V2 if rnd in ('r3', 'r4') else SYSTEM
-    print(f'{D}Loading HobbyLM-1B + Hobby adapter ({rnd}) from this Mac (MLX)…{X}', flush=True)
+    PROMPT = SYSTEM_V2 if rnd in ('r3', 'r4') else SYSTEM   # r3 adds the calendar skill
     h = MlxHobby(W / f'hobbymac-lora-{rnd}-ab.npz')  # r1 decisions verified identical to the PyTorch run (203/203)
     h.complete(SYSTEM, user_turn('warm up', state_text(False, None, 50, 50, False), None), max_new=2)
     mcp = MCP()
-    if R.osa('tell application "System Events" to get UI elements enabled') != 'true':  # Accessibility check (silent failures otherwise)
+    return h, mcp, R.osa('tell application "System Events" to get UI elements enabled') == 'true'
+
+
+def main():
+    rnd = sys.argv[1] if len(sys.argv) > 1 else 'r1'
+    print(f'{D}Loading HobbyLM-1B + Hobby adapter ({rnd}) from this Mac (MLX)…{X}', flush=True)
+    h, mcp, ax = load(rnd)
+    if not ax:  # Accessibility check (silent failures otherwise)
         print(f'{Y}⚠ Accessibility permission is OFF for the app running Hobby, so Calculator typing and screen reading will fail.\n'
               f'  Turn it on: System Settings → Privacy & Security → Accessibility → enable your terminal app, then restart it.{X}')
     print(f'{G}Hobby is ready — running fully on this Mac.{X}\n')

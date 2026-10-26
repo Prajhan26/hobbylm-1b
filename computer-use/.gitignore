@@ -11,3 +11,6 @@ data/STOP
 __pycache__/
 *.pyc
 .DS_Store
+data/HobbyBar
+data/hobby-bar.log
+data/hobby-bar-selftest.*
