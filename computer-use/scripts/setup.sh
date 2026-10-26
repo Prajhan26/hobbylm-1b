@@ -20,4 +20,5 @@ git -C vendor/mcp-server-macos-use checkout -q 205c8880e8c06fa96a3e3a859e6edca72
 (cd vendor/mcp-server-macos-use && swift build -c release)
 # small Swift tools: checkers and system controls
 for t in calc_checker brightness media_key checker; do swiftc -O hobby/$t.swift -o data/$t; done
-echo "Done. Grant Accessibility to your terminal app, then: .venv/bin/python hobby/hobby_demo.py r4"
+swiftc -O hobby/HobbyBar.swift -o data/HobbyBar   # Hobby bar: Spotlight-style panel on Shift-Command-H (⇧⌘H)
+echo "Done. Grant Accessibility to your terminal app, then: data/HobbyBar (⇧⌘H), or .venv/bin/python hobby/hobby_demo.py r4"

@@ -36,6 +36,25 @@ you › split 600 among 4 people
   ✓ done
 ```
 
+### Hobby bar (⇧⌘H)
+
+`setup.sh` also builds **Hobby bar**, a Spotlight-style search field. Start it once:
+
+```bash
+data/HobbyBar
+```
+
+**Using it:**
+- A `hobby` item appears in the menu bar.
+- Press **⇧⌘H** anywhere, type a request and press Enter. Each decision appears under the field as it happens.
+- Calendar questions such as `y / n` are answered in the same field.
+- **Esc** hides the bar.
+
+**How it behaves:**
+- The model stays loaded in the background, so requests start immediately.
+- The bar never takes focus from the app you're in, so the model sees the Mac as you left it.
+- Hotkey: ⇧⌘H is the default (`cmd-shift-h`). Set `HOBBY_BAR_HOTKEY` to `ctrl-option-space`, `option-space` or `cmd-shift-space` for another chord. Optional `cmd-h` uses ⌘H and replaces the system Hide shortcut while Hobby runs.
+
 **Permissions.** You grant these in System Settings; Hobby never grants anything itself.
 
 - **Accessibility:** for the app that runs Hobby. Hobby checks this at startup.
@@ -104,6 +123,7 @@ Full details are on the [model card](https://huggingface.co/Hobbylm/hobbylm-1B-c
 | Live sealed evaluation | `.venv/bin/python hobby/hobbymac_run.py --model trained --round r4 --adapter r4 --runtime mlx` |
 | Score a run | `.venv/bin/python hobby/hobbymac_score.py <run folder>` |
 | Harness tests: 10-action parser and allow-list (no model) | `.venv/bin/python hobby/test_harness.py` |
+| Hobby bar worker protocol: every request ends, errors included (no model) | `.venv/bin/python hobby/test_server.py` |
 | System Settings agent parser tests (no model) | `.venv/bin/python hobby/test_offline.py` |
 | Generate training data | `hobby/hobbymac_data.py` |
 | Train an adapter on Modal (H100) | `modal run hobby/hobbymac_modal.py` |
